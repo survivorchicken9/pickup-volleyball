@@ -1,10 +1,10 @@
+import pymongo
 import os
-import psycopg2
 
-conn = psycopg2.connect(os.environ["DATABASE_URL"])
+# Get environment variables
+USER = os.getenv("PYMONGO_USER")
+PASSWORD = os.getenv("PYMONGO_PASSWORD")
 
-with conn.cursor() as cur:
-    cur.execute("SELECT now()")
-    res = cur.fetchall()
-    conn.commit()
-    print(res)
+client = pymongo.MongoClient(f"mongodb+srv://{USER}:{PASSWORD}@pickup-volleyball.pbcjy4r.mongodb.net/?retryWrites=true&w=majority")
+db = client.test
+print(db)
