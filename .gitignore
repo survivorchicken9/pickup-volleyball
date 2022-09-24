@@ -1,3 +1,6 @@
+# Flask ignore
+flask_session/
+
 # PyCharm file
 .idea
 
