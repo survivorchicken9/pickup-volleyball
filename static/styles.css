@@ -1,0 +1,21 @@
+body
+{
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    background-color: #e9e9df;
+}
+
+.heading
+{
+    text-align: center;
+}
+
+nav
+{
+    background-color: #123167;
+    color: #da1430;
+}
+
+th
+{
+    text-align: center
+}
