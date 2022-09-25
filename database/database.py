@@ -1,5 +1,8 @@
 import pymongo
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 USER = os.getenv("PYMONGO_USER")
 PASSWORD = os.getenv("PYMONGO_PASSWORD")
@@ -22,7 +25,7 @@ def insert_to_players():
     test = {
         "id": 344141,
         "game_id": 1,
-        "name": "Byron",
+        "name": "Chris",
         "pos1": "Outside Hitter",
         "pos2": "Middle Blocker",
         "pos3": "Setter"

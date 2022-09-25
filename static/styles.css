@@ -15,7 +15,15 @@ nav
     color: #da1430;
 }
 
-th
+.text
 {
-    text-align: center
+    margin-top: 2%;
+    margin-bottom: 3%;
+}
+
+.btn-outline-dark:hover, .btn-outline-dark:focus, .btn-outline-dark:active, .btn-outline-dark.active, .open .dropdown-toggle.btn-outline-dark
+{
+background-color: #123167 !important;
+border-color: #123167;
+color: white !important;
 }

@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block main %}
+    <form action="/login" method="post">
+        <h2 class="heading">Create new event</h2>
+        <div class="text-center">
+            <input class="form-control mx-auto w-auto mt-3 mb-3" type="date" placeholder="Date"/>
+            <input class="form-control mx-auto w-auto mt-3 mb-3" type="text" placeholder="Location"/>
+            <input class="form-control mx-auto w-auto mt-3 mb-3" type="text" placeholder="Time"/>
+            <input class="form-control mx-auto w-auto mt-3 mb-3" type="text" style = "height: 100px" placeholder="Notes"/>
+            <button class="btn btn-outline-dark" type="submit" name="create">Create</button>
+        </div>
+    </form>
+{% endblock %}

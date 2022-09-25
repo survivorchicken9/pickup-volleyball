@@ -8,6 +8,7 @@ flask = "*"
 flask-session = "*"
 jinja2 = "*"
 pymongo = {extras = ["srv"], version = "*"}
+python-dotenv = "*"
 
 [dev-packages]
 

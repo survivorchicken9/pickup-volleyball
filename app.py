@@ -15,3 +15,18 @@ Session(app)
 @app.route("/", methods=["GET", "POST"])
 def index():
     return render_template("index.html")
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    # If form was submitted
+    if request.method == "POST":
+        return redirect("/dashboard")
+
+    # If form link was clicked via navbar
+    else:
+        return render_template("login.html")
+
+@app.route("/dashboard", methods=["GET", "POST"])
+def dash():
+    if request.method == "GET":
+        return render_template("dashboard.html")
