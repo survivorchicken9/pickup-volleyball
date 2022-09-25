@@ -30,3 +30,10 @@ def login():
 def dash():
     if request.method == "GET":
         return render_template("dashboard.html")
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        return render_template("register.html")
+    else:
+        return render_template("register.html")

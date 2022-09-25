@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}Admin Register{% endblock %}
+
+{% block main %}
+    <h2 class="container-fluid heading mb-4 mt-3">Admin Register</h2>
+
+    <form action="/register" method="post">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto p-2" type="text" placeholder="Desired Username"/>
+        <input class="form-control mx-auto w-auto mt-3 mb-4 p-2" type="password" placeholder="Desired Password" />
+        <input class="form-control mx-auto w-auto mt-3 mb-4 p-2" type="password" placeholder="Confirm Password" />
+        <input class="form-control mx-auto w-auto mt-3 mb-4 p-2" type="password" placeholder="Admin Key" />
+        <div class="text-center">
+            <input class="form-control mx-auto w-auto btn btn-outline-dark" type="submit" value="Register"/>
+        </div>
+    </form>
+{% endblock %}
