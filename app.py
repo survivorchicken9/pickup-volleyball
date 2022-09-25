@@ -14,7 +14,12 @@ Session(app)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    return render_template("index.html")
+    # If button was clicked to redirect
+    if request.method == "POST":
+        return redirect("/pickup")
+    # If page was nagivated to normally
+    else:
+        return render_template("index.html")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -22,12 +27,25 @@ def login():
     if request.method == "POST":
         return redirect("/dashboard")
 
-    # If form link was clicked via navbar
+    # If page link was clicked via navbar
     else:
         return render_template("login.html")
 
 @app.route("/dashboard", methods=["GET", "POST"])
 def dash():
+    # If form was submitted
+    if request.method == "POST":
+        date = request.form.get("date")
+        location = request.form.get("location")
+        start = request.form.get("start")
+        end = request.form.get("end")
+        notes = request.form.get("notes")
+
+        print(f"Date: {date}\nLocation: {location}\nStart Time: {start}\nEnd Time: {end}\nNotes: {notes}")
+
+        message = "Form Successfully Submitted!"
+        return render_template("success.html", message = message)
+
     if request.method == "GET":
         return render_template("dashboard.html")
 
@@ -37,3 +55,22 @@ def register():
         return render_template("register.html")
     else:
         return render_template("register.html")
+
+@app.route("/pickup", methods=["GET", "POST"])
+def pickup():
+    if request.method == "POST":
+        name = request.form.get("name")
+        pos1 = request.form.get("pos1")
+        pos2 = request.form.get("pos2")
+        pos3 = request.form.get("pos3")
+        years = request.form.get("years")
+
+        print(f"\nName: {name} \nposition 1: {pos1} \nposition 2: {pos2} \nposition 3: {pos3} \nyears: {years}\n")
+
+        return render_template("pickup.html")
+
+    # If page link was clicked via homepage
+    if request.method == "GET":
+        positions = ['Outside Hitter', 'Opposite/Diagonal', 'Libero', 'Middle Hitter', 'Setter']
+
+        return render_template("pickup.html", positions=positions)
