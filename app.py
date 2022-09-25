@@ -25,6 +25,11 @@ def index():
 def login():
     # If form was submitted
     if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+
+        print(f"Username:{username}\nPassword: {password}")
+
         return redirect("/dashboard")
 
     # If page link was clicked via navbar
@@ -52,6 +57,13 @@ def dash():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+        confirmation = request.form.get("confirmation")
+        key = request.form.get("key")
+
+        print(f"Username: {username}\nPassword: {password}\nConfirmation: {confirmation}\nKey:{key}")
+
         return render_template("register.html")
     else:
         return render_template("register.html")
