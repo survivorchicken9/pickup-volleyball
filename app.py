@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, session, flash, redirect
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime
+from models.game import Game
 
 
 app = Flask(__name__)
@@ -41,13 +42,16 @@ def login():
 def dash():
     # If form was submitted
     if request.method == "POST":
-        date = request.form.get("date")
-        location = request.form.get("location")
-        start = request.form.get("start")
-        end = request.form.get("end")
-        notes = request.form.get("notes")
+        new_game = Game(
+            date=request.form.get("date"),
+            location=request.form.get("location"),
+            start_time=request.form.get("start"),
+            end_time=request.form.get("end"),
+            notes=request.form.get("notes")
+        )
+        new_game.upsert_to_games()
 
-        print(f"Date: {date}\nLocation: {location}\nStart Time: {start}\nEnd Time: {end}\nNotes: {notes}")
+        # print(f"Date: {date}\nLocation: {location}\nStart Time: {start}\nEnd Time: {end}\nNotes: {notes}")
 
         message = "Form Successfully Submitted!"
         return render_template("success.html", message = message)
