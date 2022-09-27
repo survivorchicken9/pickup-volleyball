@@ -24,14 +24,17 @@ nav
 .btn-outline-dark:hover, .btn-outline-dark:focus, .btn-outline-dark:active, .btn-outline-dark.active, .open .dropdown-toggle.btn-outline-dark
 {
     background-color: #123167 !important;
-    border-color: #123167;
+    border-color: #123167 !important;
     color: white !important;
+    border-color: #123167 !important;
 }
+
 
 .btn
 {
    border-width: 3px !important;
    border-radius: 10px !important;
+   border-color: #123167 !important;
 }
 
 input[type=text], input[type=password], input[type=date], textarea, select, input[type=integer]
@@ -41,9 +44,25 @@ input[type=text], input[type=password], input[type=date], textarea, select, inpu
     border-width: 3px !important;
     border-radius: 10px !important;
     width: 22% !important;
+    outline: none !important;
 }
 
 .message
 {
     height: 200px !important;
+}
+
+.pref select, .pref input
+{
+    display: inline-block;
+    margin-left: 1% !important;
+    margin-right: 1% !important;
+    margin-bottom: 3px !important;
+    margin-top: 0px !important;
+}
+
+.pref
+{
+    text-align: center;
+    padding: 20px;
 }

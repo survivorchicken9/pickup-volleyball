@@ -5,7 +5,7 @@
 {% block main %}
     <h2 class="container-fluid heading mb-4 mt-3">Admin Register</h2>
 
-    <form action="/register" method="post">
+    <form action="/register" method="post" autocomplete="off">
         <input name="username" autocomplete="off" autofocus class="form-control mx-auto w-auto p-2" type="text" placeholder="Desired Username"/>
         <input name="password" class="form-control mx-auto w-auto mt-3 mb-4 p-2" type="password" placeholder="Desired Password" />
         <input name="confirmation" class="form-control mx-auto w-auto mt-3 mb-4 p-2" type="password" placeholder="Confirm Password" />

@@ -84,7 +84,7 @@ def pickup():
         pos3 = request.form.get("pos3")
         years = request.form.get("years")
 
-        print(f"\nName: {name} \nposition 1: {pos1} \nposition 2: {pos2} \nposition 3: {pos3} \nyears: {years}\n")
+        # print(f"\nName: {name} \nposition 1: {pos1} \nposition 2: {pos2} \nposition 3: {pos3} \nyears: {years}\n")
 
         return render_template("pickup.html")
 
