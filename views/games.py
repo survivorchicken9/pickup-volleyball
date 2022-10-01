@@ -6,5 +6,5 @@ games_blueprint = Blueprint('games', __name__)  # useful for redirecting
 
 @games_blueprint.route('/')
 def index():
-    alerts = Game.get_all_games()
-    return render_template('index')
+    games = Game.get_all_games()
+    return render_template('index', games=games)

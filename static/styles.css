@@ -126,3 +126,16 @@ input[type=text], input[type=password], input[type=date], textarea, select, inpu
     font-size: 30px;
     margin-bottom: 20px;
 }
+
+.button {
+    background-color: #123167;
+    color: #E9E9DF;
+    font-size: 25px;
+    padding: 10px 20px;
+    border-radius: 30px;
+    transition: all 0.5s;
+}
+
+.button:hover {
+    transform: scale(1.05);
+}
