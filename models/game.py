@@ -25,3 +25,7 @@ class Game:
 
     def insert_to_games(self):
         Database.insert_one(self.collection, self.json())
+
+    @classmethod
+    def get_all_games(cls):
+        print([cls(**elem).json() for elem in Database.find(cls.collection, {})])
