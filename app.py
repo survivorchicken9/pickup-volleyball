@@ -3,7 +3,7 @@ from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime
 from models.game import Game
-
+from models.player import Player
 
 app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
@@ -17,7 +17,7 @@ def index():
     # If button was clicked to redirect
     if request.method == "POST":
         return redirect("/pickup")
-    # If page was nagivated to normally
+    # If page was navigated to normally
     else:
         return render_template("index.html")
 
@@ -49,12 +49,10 @@ def dash():
             end_time=request.form.get("end"),
             notes=request.form.get("notes")
         )
-        new_game.upsert_to_games()
-
-        # print(f"Date: {date}\nLocation: {location}\nStart Time: {start}\nEnd Time: {end}\nNotes: {notes}")
+        new_game.insert_to_games()
 
         message = "Form Successfully Submitted!"
-        return render_template("success.html", message = message)
+        return render_template("success.html", message=message)
 
     if request.method == "GET":
         return render_template("dashboard.html")
@@ -78,18 +76,19 @@ def register():
 @app.route("/pickup", methods=["GET", "POST"])
 def pickup():
     if request.method == "POST":
-        name = request.form.get("name")
-        pos1 = request.form.get("pos1")
-        pos2 = request.form.get("pos2")
-        pos3 = request.form.get("pos3")
-        years = request.form.get("years")
-
-        # print(f"\nName: {name} \nposition 1: {pos1} \nposition 2: {pos2} \nposition 3: {pos3} \nyears: {years}\n")
+        new_player = Player(
+            game_id=request.form.get("name"),
+            position_1=request.form.get("pos1"),
+            position_2=request.form.get("pos2"),
+            position_3=request.form.get("pos3"),
+            years=int(request.form.get("years"))
+        )
+        new_player.insert_to_players()
 
         return render_template("pickup.html")
 
     # If page link was clicked via homepage
     if request.method == "GET":
-        positions = ['Outside Hitter', 'Opposite/Diagonal', 'Libero', 'Middle Hitter', 'Setter']
+        positions = ['Outside Hitter', 'Opposite Hitter', 'Libero', 'Middle Blocker', 'Setter']
 
         return render_template("pickup.html", positions=positions)

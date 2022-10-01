@@ -23,5 +23,5 @@ class Game:
             "notes": self.notes
         }
 
-    def upsert_to_games(self):
+    def insert_to_games(self):
         Database.insert_one(self.collection, self.json())
