@@ -71,3 +71,16 @@ input[type=text], input[type=password], input[type=date], textarea, select, inpu
     display: flex;
     justify-content: center;
 }
+
+.contain {
+    display: grid;
+    width: 100vw;
+    height: 50vh;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+}
+
+.box {
+    color: black !important;
+    text-decoration: none !important;
+}
