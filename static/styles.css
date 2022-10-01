@@ -73,14 +73,37 @@ input[type=text], input[type=password], input[type=date], textarea, select, inpu
 }
 
 .contain {
-    display: grid;
-    width: 100vw;
-    height: 50vh;
+    display: flex;
+    flex-wrap: wrap;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 20px;
+    justify-content: center;
+    align-content: center;
+
 }
 
-.box {
-    color: black !important;
+.event {
     text-decoration: none !important;
+    color: #E9E9DF;
+
+}
+
+.event:hover {
+    text-decoration: none !important;
+    color: #E9E9DF;
+}
+
+.square {
+    border-radius: 30px;
+    background-color: #123167;
+    padding: 100px;
+    margin: 20px;
+    text-align: center;
+    transition: all 0.5s;
+}
+
+.square:hover {
+    transform: scale(1.1);
+    box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+
 }
