@@ -92,3 +92,9 @@ def pickup():
         positions = ['Outside Hitter', 'Opposite Hitter', 'Libero', 'Middle Blocker', 'Setter']
 
         return render_template("pickup.html", positions=positions)
+
+
+@app.route("/admin", methods=["GET", "POST"])
+def admin():
+    if request.method == "GET":
+        return render_template("admin.html")

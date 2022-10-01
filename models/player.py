@@ -16,7 +16,6 @@ class Player:
     def json(self) -> dict:
         return {
             "_id": self._id,
-            "collection": self.collection,
             "game_id": self.game_id,
             "position_1": self.position_1,
             "position_2": self.position_2,
