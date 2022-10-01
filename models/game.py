@@ -28,4 +28,4 @@ class Game:
 
     @classmethod
     def get_all_games(cls):
-        print([cls(**elem).json() for elem in Database.find(cls.collection, {})])
+        return [cls(**elem).json() for elem in Database.find(cls.collection, {})]

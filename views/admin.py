@@ -34,8 +34,8 @@ def register():
         return render_template("admin/register.html")
 
 
-@admin_blueprint.route("/dashboard", methods=["GET", "POST"])
-def dashboard():
+@admin_blueprint.route("/new-event", methods=["GET", "POST"])
+def new_event():
     # flow for creating a new game
     if request.method == "POST":
         new_game = Game(
@@ -53,4 +53,14 @@ def dashboard():
     # admin home page (dashboard)
     if request.method == "GET":
         all_games_json = Game.get_all_games()  # games in json
-        return render_template("admin/new_event.html")
+
+        return render_template("admin/new-event.html")
+
+
+@admin_blueprint.route("/view-events", methods=["GET", "POST"])
+def view_events():
+    if request.method == "GET":
+        games = Game.get_all_games()
+        for game in games:
+            print(game)
+        return render_template("admin/view-events.html", games=games)

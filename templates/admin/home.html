@@ -4,11 +4,7 @@
 
 {% block main %}
     <div class="contain">
-        <div class="square">
-            <a class="event" href="/dashboard">Create New Event</a>
-        </div>
-        <div class="square">
-            <a class="event" href="">View Existing Events (Doesn't work yet)</a>
-        </div>
+            <a class="square" href="/admin/new-event"><button class="event">Create New Event </button></a>
+            <a class="square" href="/admin/view-events"><button class="event">View Existing Events</button></a>
     </div>
 {% endblock %}
