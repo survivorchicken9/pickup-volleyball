@@ -3,13 +3,16 @@
 {% block title %}Admin Login{% endblock %}
 
 {% block main %}
-    <h2 class="container-fluid heading mb-4 mt-3">Admin Login</h2>
-
-    <form action="/admin/login" method="post">
-        <input name="username" autocomplete="off" autofocus class="form-control mx-auto w-auto p-2" type="text" placeholder="Username"/>
-        <input name="password" class="form-control mx-auto w-auto mt-3 mb-4 p-2" type="password" placeholder="Password" />
-        <div class="text-center">
-            <input class="form-control mx-auto w-auto btn btn-outline-dark" type="submit" value="Login"/>
+    <div class="forms">
+        <h2 class="container-fluid heading mb-4">Admin Login</h2>
+        <div>
+            <form action="/admin/login" method="post">
+                <input name="username" autocomplete="off" autofocus class="form-control mx-auto w-auto p-2" type="text" placeholder="Username"/>
+                <input name="password" class="form-control mx-auto w-auto mt-3 mb-4 p-2" type="password" placeholder="Password" />
+                <div class="text-center">
+                    <input class="button small" type="submit" value="Login"/>
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 {% endblock %}

@@ -4,6 +4,8 @@ from models.game import Game
 games_blueprint = Blueprint('games', __name__)  # useful for redirecting
 
 
-@games_blueprint.route('/home', methods=["GET", "POST"])
+@games_blueprint.route('/', methods=["GET", "POST"])
 def index():
-    return render_template("games/home.html")
+    if request.method == "GET":
+        games = Game.get_all_games()
+        return render_template("games/home.html", games=games)

@@ -11,7 +11,6 @@ def home():
         return render_template("admin/home.html", games=games)
 
 
-
 @admin_blueprint.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
