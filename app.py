@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 from flask_session import Session
 from views.games import games_blueprint
 from views.admin import admin_blueprint
@@ -12,9 +12,10 @@ app.secret_key = os.urandom(64)
 Session(app)
 
 
-@app.route('/')
+@app.route('/', methods=["GET", "POST"])
 def index():
-    return render_template('index.html')
+    if request.method == "GET":
+        return render_template('index.html')
 
 
 app.register_blueprint(games_blueprint, url_prefix='/games')

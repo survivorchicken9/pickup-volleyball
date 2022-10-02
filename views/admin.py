@@ -4,9 +4,12 @@ from models.game import Game
 admin_blueprint = Blueprint('admin', __name__)  # useful for redirecting
 
 
-@admin_blueprint.route("/home", methods=["GET"])
+@admin_blueprint.route("/home", methods=["GET", "POST"])
 def home():
-    return render_template("admin/home.html")
+    if request.method == "GET":
+        games = Game.get_all_games()
+        return render_template("admin/home.html", games=games)
+
 
 
 @admin_blueprint.route("/login", methods=["GET", "POST"])
@@ -61,6 +64,4 @@ def new_event():
 def view_events():
     if request.method == "GET":
         games = Game.get_all_games()
-        for game in games:
-            print(game)
         return render_template("admin/view-events.html", games=games)
