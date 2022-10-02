@@ -3,7 +3,6 @@ from models.game import Game
 
 admin_blueprint = Blueprint('admin', __name__)  # useful for redirecting
 
-
 @admin_blueprint.route("/home", methods=["GET", "POST"])
 def home():
     if request.method == "GET":

@@ -5,16 +5,18 @@
 {% block main %}
 
     <h2 class="container-fluid heading mt-3 mb-4">Upcoming Games</h2>
+    <h4>Click on any event you want to join!</h4>
     <div class="contain">
         {% for game in games %}
-            <div class="square">
-                <div class="event">
+            <form action="/games/rsvp" method="get" class="square">
+                <button type="submit" class="event">
                     <h4 class="format heading"> {{ game.date }}</h4>
                     <p><span class="format">Time:</span> {{ game.start_time }} - {{ game.end_time }}</p>
                     <p><span class="format">Location:</span> {{ game.location }}</p>
                     <p><span class="format">Notes: </span> {{ game.notes }}</p>
-                </div>
-            </div>
+                </button>
+
+            </form>
         {% endfor %}
     </div>
 

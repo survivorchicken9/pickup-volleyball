@@ -1,11 +1,13 @@
 {% extends "layout.html" %}
 
-{% block title %}Pickup{% endblock %}
+{% block title %}RSVP{% endblock %}
 
 {% block main %}
-    <h2 class="container-fluid heading mb-4 mt-3">Pickup Register</h2>
+    <div class="forms">
+        <h2 class="container-fluid heading mb-4 mt-3 heading">RSVP for (Event)</h2>
+    </div>
 
-    <form action="/pickup" method="post" autocomplete="off">
+    <form action="/games/rsvp/{{ game_id }}" method="post" autocomplete="off">
         <div class="pref container">
             <input id="name" name="name" autocomplete="off" autofocus class="form-control mx-auto w-auto p-2" type="text" placeholder="Name"/>
             <input id="years" class="form-control mx-auto w-auto mt-3 mb-4 p-2" type="integer" name="years" placeholder="Years of Experience" />
@@ -37,7 +39,7 @@
             </select>
         </div>
         <div class="text-center">
-            <input class="form-control mx-auto w-auto btn btn-outline-dark" type="submit" value="Post Submission"/>
+            <input class="button small" type="submit" value="Submit"/>
         </div>
     </form>
 {% endblock %}

@@ -49,13 +49,13 @@ def pickup():
         )
         new_player.insert_to_players()
 
-        return render_template("pickup.html")
+        return render_template("rsvp.html")
 
     # If page link was clicked via homepage
     if request.method == "GET":
         positions = ['Outside Hitter', 'Opposite Hitter', 'Libero', 'Middle Blocker', 'Setter']
 
-        return render_template("pickup.html", positions=positions)
+        return render_template("rsvp.html", positions=positions)
 
 
 @app.route("/admin", methods=["GET", "POST"])

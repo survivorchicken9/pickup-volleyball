@@ -7,6 +7,7 @@ from dataclasses import dataclass, field
 class Player:
     collection: str = field(init=False, default="players")
     game_id: str
+    name: str
     position_1: str
     position_2: str
     position_3: str
@@ -17,6 +18,7 @@ class Player:
         return {
             "_id": self._id,
             "game_id": self.game_id,
+            "name": self.name,
             "position_1": self.position_1,
             "position_2": self.position_2,
             "position_3": self.position_3,

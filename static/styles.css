@@ -39,7 +39,7 @@ nav
 
 input[type=text], input[type=password], input[type=date], textarea[type=text], select, input[type=integer], input[type=text]:focus, input[type=password]:focus, input[type=date]:focus, input[type=integer]:focus, textarea[type=text]:focus
 {
-    background-color: transparent;
+    background-color: transparent !important;
     border-color: #123167 !important;
     border-width: 3px !important;
     width: 22% !important;
@@ -157,4 +157,13 @@ input[type=text], input[type=password], input[type=date], textarea[type=text], s
 
 .small {
     transform: scale(1.1)
+}
+
+.dropdown {
+    float: right !important;
+}
+
+h4 {
+    color: #d31532;
+    text-align: center;
 }
