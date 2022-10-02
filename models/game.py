@@ -11,7 +11,13 @@ class Game:
     end_time: str
     location: str
     notes: str
+    number_of_teams: int
+    number_of_players: int
     _id: str = field(default_factory=lambda: uuid.uuid4().hex)
+
+    @classmethod
+    def get_all_games(cls):
+        return [cls(**elem).json() for elem in Database.find(cls.collection, {})]
 
     def json(self) -> dict:
         return {
@@ -20,12 +26,13 @@ class Game:
             "start_time": self.start_time,
             "end_time": self.end_time,
             "location": self.location,
-            "notes": self.notes
+            "notes": self.notes,
+            "number_of_teams": self.number_of_teams,
+            "number_of_players": self.number_of_players
         }
 
     def insert_to_games(self):
         Database.insert_one(self.collection, self.json())
 
-    @classmethod
-    def get_all_games(cls):
-        return [cls(**elem).json() for elem in Database.find(cls.collection, {})]
+    def find_game(self):
+        return Database.find_one(self.collection, {"_id": self._id})
