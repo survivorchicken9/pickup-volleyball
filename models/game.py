@@ -19,6 +19,10 @@ class Game:
     def get_all_games(cls):
         return [cls(**elem).json() for elem in Database.find(cls.collection, {})]
 
+    @classmethod
+    def find_game(cls, game_id):
+        return Database.find_one(cls.collection, {"_id": game_id})
+
     def json(self) -> dict:
         return {
             "_id": self._id,
@@ -33,6 +37,3 @@ class Game:
 
     def insert_to_games(self):
         Database.insert_one(self.collection, self.json())
-
-    def find_game(self):
-        return Database.find_one(self.collection, {"_id": self._id})
