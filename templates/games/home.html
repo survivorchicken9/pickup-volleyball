@@ -7,17 +7,21 @@
     <h2 class="container-fluid heading mt-3 mb-4">Upcoming Games</h2>
     <h4>Click on any event you want to join!</h4>
     <div class="contain">
-        {% for game in games %}
-            <form action="/games/rsvp" method="get" class="square">
-                <button type="submit" class="event">
-                    <h4 class="format heading"> {{ game.date }}</h4>
-                    <p><span class="format">Time:</span> {{ game.start_time }} - {{ game.end_time }}</p>
-                    <p><span class="format">Location:</span> {{ game.location }}</p>
-                    <p><span class="format">Notes: </span> {{ game.notes }}</p>
-                </button>
-
-            </form>
-        {% endfor %}
+        {% if games %}
+            {% for game in games %}
+                <form action="rsvp" method="get" class="square">
+                    <button type="submit" class="event">
+                        <h4 class="format heading"> {{ game.date }} </h4>
+                        <p><span class="format">Time:</span> {{ game.start_time }} - {{ game.end_time }}</p>
+                        <p><span class="format">Location:</span> {{ game.location }}</p>
+                        <p><span class="format">Notes: </span> {{ game.notes }}</p>
+                    </button><br>
+                    <input id="game_id" class="invisible" type="text" name='game_id' value='{{ game._id }}'/>
+                </form>
+            {% endfor %}
+        {% else %}
+            <p>Oh no! Looks like there are no upcoming events :(</p>
+        {% endif %}
     </div>
 
 {% endblock %}

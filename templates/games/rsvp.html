@@ -4,10 +4,11 @@
 
 {% block main %}
     <div class="forms">
-        <h2 class="container-fluid heading mb-4 mt-3 heading">RSVP for (Event)</h2>
+        <h2 class="container-fluid heading mb-4 mt-3 heading">RSVP for game at <span class="format">{{ game_data.date }}</span></h2>
+        <h4 class="container-fluid mb-4 mt-3 text-align-center"></h4>
     </div>
 
-    <form action="/games/rsvp/{{ game_id }}" method="post" autocomplete="off">
+    <form action="success" method="post" autocomplete="off">
         <div class="pref container">
             <input id="name" name="name" autocomplete="off" autofocus class="form-control mx-auto w-auto p-2" type="text" placeholder="Name"/>
             <input id="years" class="form-control mx-auto w-auto mt-3 mb-4 p-2" type="integer" name="years" placeholder="Years of Experience" />
@@ -41,5 +42,7 @@
         <div class="text-center">
             <input class="button small" type="submit" value="Submit"/>
         </div>
+        <input id="game_id" class="invisible" type="text" name='game_id' value='{{ game_data.id }}'/>
+        {{game_data.id}}
     </form>
 {% endblock %}

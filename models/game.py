@@ -6,13 +6,13 @@ from dataclasses import dataclass, field
 @dataclass(eq=False)
 class Game:
     collection: str = field(init=False, default="games")
-    number_of_teams: int = field(init=False, default=2)
-    number_of_players: int = field(init=False, default=24)
     date: str
     start_time: str
     end_time: str
     location: str
     notes: str
+    number_of_teams: int = field(default=2)
+    number_of_players: int = field(default=24)
     _id: str = field(default_factory=lambda: uuid.uuid4().hex)
 
     @classmethod

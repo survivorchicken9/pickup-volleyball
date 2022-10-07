@@ -14,38 +14,29 @@ def index():
 
 @games_blueprint.route('/success', methods=["GET", "POST"])
 def success():
-    if request.method == "GET":
-        return render_template("games/success.html")
-
-
-@games_blueprint.route('/rsvp/<game_id>', methods=["GET", "POST"])
-def rsvp(game_id):
-    game_data = Game.find_game(game_id)
-
-    print(game_data)
-
-    if request.method == "GET":
-        return render_template("games/rsvp.html", game_data=game_data, game_id=game_id)
-
     if request.method == "POST":
-        print(request.form.get)
         new_player = Player(
-            game_id=request.form.get(game_id),
+            game_id=request.form.get("game_id"),
             name=request.form.get("name"),
             position_1=request.form.get("pos1"),
             position_2=request.form.get("pos2"),
             position_3=request.form.get("pos3"),
-            years=int(request.form.get("years"))
+            years=int(request.form.get("years")),
         )
+
+        print(new_player)
 
         new_player.insert_to_players()
 
         print("success")
-        return redirect(url_for(".success"))
+        return render_template("games/success.html", player_data=new_player)
 
 
-@games_blueprint.route('/games/rsvp', methods=["GET", "POST"])
-def rsvp_t(game_id):
-    if request.method == "POST":
-        print(request.form.get("name"))
-        return render_template("games/home.html")
+@games_blueprint.route('/rsvp', methods=["GET", "POST"])
+def rsvp():
+    game_id = request.args['game_id']
+
+    if request.method == "GET":
+        game_data = Game.find_game(game_id)
+        print(game_data)
+        return render_template("games/rsvp.html", game_data=game_data, game_id=game_id)

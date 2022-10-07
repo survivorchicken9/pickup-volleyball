@@ -30,6 +30,15 @@ def register():
         confirmation = request.form.get("confirmation")
         key = request.form.get("key")
 
+        if not username:
+            print("You must enter a username")
+        if not password:
+            print("You must enter a password")
+        if not confirmation:
+            print("You must enter a confirmation")
+        if not key:
+            print("You must enter an admin key, contact BACBAC for more info")
+
         return redirect(url_for(".login"))
     else:
         return render_template("admin/register.html")
@@ -44,12 +53,13 @@ def new_event():
             location=request.form.get("location"),
             start_time=request.form.get("start"),
             end_time=request.form.get("end"),
-            notes=request.form.get("notes")
+            notes=request.form.get("notes"),
+            number_of_teams=request.form.get("number_of_teams"),
         )
         new_game.insert_to_games()
 
         message = "Form Successfully Submitted!"
-        return render_template("success.html", message=message)
+        return render_template("admin/success.html", message=message)
 
     # admin home page (dashboard)
     if request.method == "GET":
