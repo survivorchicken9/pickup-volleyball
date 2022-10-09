@@ -1,6 +1,6 @@
-from flask import Blueprint, flash, render_template, request, redirect, url_for, session
+from common.forms import NewEventForm
 from models.game import Game
-from flask import Blueprint, render_template, request, redirect, url_for, session
+from flask import Blueprint, render_template, request, redirect, url_for, session, flash
 from werkzeug.security import check_password_hash, generate_password_hash
 
 admin_blueprint = Blueprint('admin', __name__)  # useful for redirecting
@@ -15,7 +15,6 @@ def home():
 
 @admin_blueprint.route("/login", methods=["GET", "POST"])
 def login():
-
     # Forget any user info
     session.clear()
 
@@ -39,7 +38,7 @@ def register():
         key = request.form.get("key")
         hashpass = generate_password_hash(password)
 
-        admin = admin(
+        admin = Admin(
             username=username,
             password=hashpass
         )
@@ -51,46 +50,27 @@ def register():
         return render_template("admin/register.html")
 
 
-@admin_blueprint.route("/new-event", methods=["GET", "POST"])
+@admin_blueprint.route('/new-event', methods=['GET', 'POST'])
 def new_event():
-    # flow for creating a new game
-    if request.method == "POST":
-        date = request.form.get("date")
-        location = request.form.get("location")
-        start_time = request.form.get("start")
-        end_time = request.form.get("end")
-        notes = request.form.get("notes")
-        number_of_teams = int(request.form.get("number_of_teams"))
+    if request.method == 'POST':
+        new_game = Game(
+            date=request.form.get("date"),
+            location=request.form.get("location"),
+            start_time=request.form.get("start_time"),
+            end_time=request.form.get("end_time"),
+            notes=request.form.get("notes"),
+            number_of_players=int(request.form.get("number_of_players")),
+            number_of_teams=int(request.form.get("number_of_teams"))
+        )
 
-        if not date:
-            print("No date was entered")
-        if not location:
-            print("No date was entered")
-        if not start_time or not end_time:
-            print("No time")
-        if not notes:
-            print("No notes")
-        if not number_of_teams:
-            print("No teams")
-        else:
-            new_game = Game(
-                date=date,
-                location=location,
-                start_time=start_time,
-                end_time=end_time,
-                notes=notes,
-                number_of_teams=number_of_teams,
-            )
-            new_game.insert_to_games()
-            flash("Success")
-            message = "Form Successfully Submitted!"
-            return render_template("admin/success.html", message=message)
+        new_game.insert_to_games()
 
-    # admin home page (dashboard)
-    if request.method == "GET":
-        all_games_json = Game.get_all_games()  # games in json
-
-        return render_template("admin/new-event.html")
+        print(new_game)
+        print("success")
+        return render_template("admin/success.html")
+    else:
+        form = NewEventForm()
+        return render_template("admin/new-event.html", form=form)
 
 
 @admin_blueprint.route("/view-events", methods=["GET", "POST"])

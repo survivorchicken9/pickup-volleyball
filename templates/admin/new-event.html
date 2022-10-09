@@ -6,22 +6,26 @@
     <form action="/admin/new-event" method="post" class="needs-validation" autocomplete="off" novalidate>
         <h2 class="heading">Create new event</h2>
         <div class="text-center">
-            <input name="date" id="date" class="form-control mx-auto w-auto mt-3 mb-3" type="date" placeholder="Date" required/>
+            <p>{{ form.date(class_="form-control mx-auto w-auto mt-3 mb-3", placeholder="Date") }}</p>
             <div class="invalid-feedback">Must enter date</div>
 
-            <input name="location" class="form-control mx-auto w-auto mt-3 mb-3" type="text" placeholder="Location" required/>
+            <p>{{ form.location(class_="form-control mx-auto w-auto mt-3 mb-3", placeholder="Location") }}</p>
             <div class="invalid-feedback">Must enter a location</div>
 
-            <input name="start" class="form-control mx-auto w-auto mt-3 mb-3" type="text" placeholder="Start Time" required/>
+            <p>{{ form.start_time(class_="form-control mx-auto w-auto mt-3 mb-3", placeholder="Start Time") }}</p>
             <div class="invalid-feedback">Must enter a starting time</div>
 
-            <input name="end" class="form-control mx-auto w-auto mt-3 mb-3" type="text" placeholder="End Time" required />
+            <p>{{ form.end_time(class_="form-control mx-auto w-auto mt-3 mb-3", placeholder="End Time") }}</p>
             <div class="invalid-feedback">Must enter an ending time</div>
 
-            <input name="number_of_teams" class="form-control mx-auto w-auto mt-3 mb-3" type="number" placeholder="Number of Teams" required/>
+            <p>{{ form.number_of_teams(class_="form-control mx-auto w-auto mt-3 mb-3", placeholder="Number of Teams") }}</p>
             <div class="invalid-feedback">Must enter valid number of teams</div>
 
-            <textarea name="notes" id="msg_input" class="form-control mx-auto mt-3 mb-3 box" rows="5" cols="5" type="text" style = "height: 100px" placeholder="Notes" required></textarea>
+            <p>{{ form.number_of_players(class_="form-control mx-auto w-auto mt-3 mb-3", placeholder="Number of Players") }}</p>
+            <div class="invalid-feedback">Must enter valid number of players</div>
+
+            <!--       TODO: woops this doesn't spill over used to be textarea pls fix @chris     -->
+            <p>{{ form.notes(class_="form-control mx-auto w-auto mt-3 mb-3", rows="5", cols="5", type="text", style="height: 100px", placeholder="Notes") }}</p>
             <div class="invalid-feedback">Must enter a description of your event</div>
 
             <button class="button small" type="submit" name="create">Create</button>

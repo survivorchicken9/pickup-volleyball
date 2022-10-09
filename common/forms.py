@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import Form, StringField, PasswordField, SubmitField, IntegerField, SelectField
+from wtforms import Form, StringField, PasswordField, SubmitField, IntegerField, SelectField, DateField
 from wtforms.validators import InputRequired, NumberRange, DataRequired, Length, EqualTo
 
 
@@ -30,3 +30,13 @@ class GameRSVPForm(FlaskForm):
     position_3 = SelectField("Preference 3", coerce=str, choices=position_choices, validators=[InputRequired()])
     years = IntegerField("Preference 3", validators=[NumberRange(min=0, max=122)])
     submit = SubmitField('Submit')
+
+
+class NewEventForm(FlaskForm):
+    date = DateField("Date", validators=[InputRequired()])
+    start_time = StringField("Start Time", validators=[InputRequired()])
+    end_time = StringField("End Time", validators=[InputRequired()])
+    location = StringField("Location", validators=[InputRequired()])
+    notes = StringField("Notes")
+    number_of_teams = IntegerField("Number of Teams", validators=[InputRequired()])
+    number_of_players = IntegerField("Number of Players", validators=[InputRequired()])
