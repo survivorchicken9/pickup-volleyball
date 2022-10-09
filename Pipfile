@@ -9,6 +9,7 @@ flask-session = "*"
 jinja2 = "*"
 pymongo = {extras = ["srv"], version = "*"}
 python-dotenv = "*"
+flask-wtf = "*"
 
 [dev-packages]
 

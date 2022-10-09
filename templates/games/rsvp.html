@@ -8,41 +8,21 @@
         <h4 class="container-fluid mb-4 mt-3 text-align-center"></h4>
     </div>
 
+<!-- Form using wtform class - novalidate maybe add later-->
     <form action="success" method="post" autocomplete="off">
+        {{ form.hidden_tag() }}
         <div class="pref container">
-            <input id="name" name="name" autocomplete="off" autofocus class="form-control mx-auto w-auto p-2" type="text" placeholder="Name"/>
-            <input id="years" class="form-control mx-auto w-auto mt-3 mb-4 p-2" type="integer" name="years" placeholder="Years of Experience" />
+            <p>{{ form.name(class_="form-control mx-auto w-auto p-2", placeholder="Name") }}</p>
+            <p>{{ form.years(class_="form-control mx-auto w-auto mt-3 mb-4 p-2", placeholder="Years of Experience") }}</p>
         </div>
         <div class="pref container">
-            <select id="pos1" class="form-select mx-auto w-auto mb-4 mt-4" name="pos1">
-                <option selected="selected" disabled>Preference 1</option>
-                <option>Outside Hitter</option>
-                <option>Opposite/Diagonal</option>
-                <option>Middle Hitter</option>
-                <option>Libero</option>
-                <option>Setter</option>
-            </select>
-            <select id="pos2" class="form-select mx-auto w-auto mb-4" name="pos2">
-                <option selected="selected" disabled>Preference 2</option>
-                <option>Outside Hitter</option>
-                <option>Opposite/Diagonal</option>
-                <option>Middle Hitter</option>
-                <option>Libero</option>
-                <option>Setter</option>
-            </select>
-            <select id="pos3" class="form-select mx-auto w-auto mb-4" name="pos3">
-                <option selected="selected" disabled>Preference 3</option>
-                <option>Outside Hitter</option>
-                <option>Opposite/Diagonal</option>
-                <option>Middle Hitter</option>
-                <option>Libero</option>
-                <option>Setter</option>
-            </select>
+            <p>{{ form.position_1(class="form-select mx-auto w-auto mb-4 mt-4") }}</p>
+            <p>{{ form.position_2(class="form-select mx-auto w-auto mb-4 mt-4") }}</p>
+            <p>{{ form.position_3(class="form-select mx-auto w-auto mb-4 mt-4") }}</p>
         </div>
         <div class="text-center">
-            <input class="button small" type="submit" value="Submit"/>
+            <p>{{ form.submit(class="button small", value="Submit") }}</p>
         </div>
         <input id="game_id" class="invisible" type="text" name='game_id' value='{{ game_data.id }}'/>
-        {{game_data.id}}
     </form>
 {% endblock %}
