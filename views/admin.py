@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session
+from flask import Blueprint, flash, render_template, request, redirect, url_for, session
 from models.game import Game
 
 admin_blueprint = Blueprint('admin', __name__)  # useful for redirecting
@@ -25,6 +25,7 @@ def login():
 @admin_blueprint.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
+
         username = request.form.get("username")
         password = request.form.get("password")
         confirmation = request.form.get("confirmation")
@@ -48,18 +49,36 @@ def register():
 def new_event():
     # flow for creating a new game
     if request.method == "POST":
-        new_game = Game(
-            date=request.form.get("date"),
-            location=request.form.get("location"),
-            start_time=request.form.get("start"),
-            end_time=request.form.get("end"),
-            notes=request.form.get("notes"),
-            number_of_teams=request.form.get("number_of_teams"),
-        )
-        new_game.insert_to_games()
+        date = request.form.get("date")
+        location = request.form.get("location")
+        start_time = request.form.get("start")
+        end_time = request.form.get("end")
+        notes = request.form.get("notes")
+        number_of_teams = request.form.get("number_of_teams")
 
-        message = "Form Successfully Submitted!"
-        return render_template("admin/success.html", message=message)
+        if not date:
+            print("No date was entered")
+        if not location:
+            print("No date was entered")
+        if not start_time or not end_time:
+            print("No time")
+        if not notes:
+            print("No notes")
+        if not number_of_teams:
+            print("No teams")
+        else:
+            new_game = Game(
+                date=date,
+                location=location,
+                start_time=start_time,
+                end_time=end_time,
+                notes=notes,
+                number_of_teams=number_of_teams,
+            )
+            new_game.insert_to_games()
+            flash("Success")
+            message = "Form Successfully Submitted!"
+            return render_template("admin/success.html", message=message)
 
     # admin home page (dashboard)
     if request.method == "GET":

@@ -3,16 +3,40 @@
 {% block title %}Admin Dashboard{% endblock %}
 
 {% block main %}
-    <form action="/admin/new-event" method="post" autocomplete="off">
+    <form action="/admin/new-event" method="post" class="needs-validation" autocomplete="off" novalidate>
         <h2 class="heading">Create new event</h2>
         <div class="text-center">
-            <input name="date" class="form-control mx-auto w-auto mt-3 mb-3" type="date" placeholder="Date"/>
-            <input name="location" class="form-control mx-auto w-auto mt-3 mb-3" type="text" placeholder="Location"/>
-            <input name="start" class="form-control mx-auto w-auto mt-3 mb-3" type="text" placeholder="Start Time"/>
-            <input name="end" class="form-control mx-auto w-auto mt-3 mb-3" type="text" placeholder="End Time"/>
-            <input name="number_of_teams" class="form-control mx-auto w-auto mt-3 mb-3" type="number" placeholder="Number of Teams"/>
-            <textarea name="notes" id="msg_input" class="form-control mx-auto mt-3 mb-3 box" rows="5" cols="5" type="text" style = "height: 100px" placeholder="Notes"></textarea>
+            <input name="date" id="date" class="form-control mx-auto w-auto mt-3 mb-3" type="date" placeholder="Date" required/>
+            <div class="invalid-feedback">Must enter date</div>
+
+            <input name="location" class="form-control mx-auto w-auto mt-3 mb-3" type="text" placeholder="Location" required/>
+            <div class="invalid-feedback">Must enter a location</div>
+
+            <input name="start" class="form-control mx-auto w-auto mt-3 mb-3" type="text" placeholder="Start Time" required/>
+            <div class="invalid-feedback">Must enter a starting time</div>
+
+            <input name="end" class="form-control mx-auto w-auto mt-3 mb-3" type="text" placeholder="End Time" required />
+            <div class="invalid-feedback">Must enter an ending time</div>
+
+            <input name="number_of_teams" class="form-control mx-auto w-auto mt-3 mb-3" type="number" placeholder="Number of Teams" required/>
+            <div class="invalid-feedback">Must enter valid number of teams</div>
+
+            <textarea name="notes" id="msg_input" class="form-control mx-auto mt-3 mb-3 box" rows="5" cols="5" type="text" style = "height: 100px" placeholder="Notes" required></textarea>
+            <div class="invalid-feedback">Must enter a description of your event</div>
+
             <button class="button small" type="submit" name="create">Create</button>
         </div>
     </form>
+
+    <script>
+        var form = document.querySelector('.needs-validation');
+
+        form.addEventListener('submit', function(event) {
+            if (form.checkValidity() == false) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+        })
+    </script>
 {% endblock %}

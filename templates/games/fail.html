@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %} Oh no! {% endblock %}
+{% block main %}
+    <div class="success-grid">
+        <div class="success">
+            <h1 class="success animate__animated animate__fadeInLeft">Oh no!</h1>
+        </div>
+        <div class="success-picture">
+            <img src="//www.gifcen.com/wp-content/uploads/2021/05/haikyuu-gif-7.gif">
+        </div>
+        <div class="success-message animate__animated animate__zoomIn">
+            <h2>Your RSVP was not sent in.</h2>
+            <p>{{ msg }}</p>
+            <button class="button animate__animated animate__bounceIn animate__delay-1s"><a class="event" href="/">Try Again</a></button>
+        </div>
+
+    </div>
+
+{% endblock %}
