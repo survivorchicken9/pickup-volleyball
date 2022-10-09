@@ -4,6 +4,7 @@ from common.forms import GameRSVPForm
 from models.game import Game
 from models.player import Player
 from datetime import date, datetime
+from common.gifs import get_random_gif
 
 games_blueprint = Blueprint('games', __name__)  # useful for redirecting
 
@@ -17,12 +18,7 @@ def index():
         today = date.today()
 
         for game in games:
-            event_date = game['date']
-            event_date_object = datetime.strptime(event_date, '%Y-%m-%d').date()
-            if event_date_object < today:
-                print(f"{event_date_object} is before today")
-            else:
-                print(f"{event_date_object} is after today")
+            game['gif'] = get_random_gif()
 
         return render_template("games/home.html", games=games)
 

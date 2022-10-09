@@ -221,9 +221,32 @@ th {
 }
 
 td {
-    padding: 40px !important;
+    padding: 2.5% !important;
+    transition: 0.4s;
 }
 
 thead {
     border-bottom-color: #808080 !important;
+}
+
+.event {
+    font-weight: bold;
+}
+
+tr {
+    border-bottom: 1px solid #808080 !important;
+}
+
+tr:hover {
+    cursor: pointer;
+}
+
+.game-viewer {
+    display: grid;
+    grid-template-column: repeat(3, 1fr);
+    grid-template-row: 1fr;
+}
+
+.game-table {
+    grid-column: span 2 !important;
 }

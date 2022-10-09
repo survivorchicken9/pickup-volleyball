@@ -3,33 +3,32 @@
 {% block title %} Home {% endblock %}
 
 {% block main %}
-    <div>
-        <h2 class="container-fluid heading">Upcoming Games</h2>
-        {% if games %}
-        <table class="table table-hover">
-            <thead>
-                <th scope="col">Title</th>
-                <th scope="col">Notes</th>
-                <th scope="col">Location</th>
-                <th scope="col">Date</th>
-                <th scope="col">Time</th>
-            </thead>
-            <tbody>
-                {% for game in games %}
-                    <tr>
-                        <td><a href="{{ url_for('games.rsvp', game_id=game._id) }}">link</a></td>
-                        <td> {{ game.notes }} </td>
-                        <td> {{ game.location }} </td>
-                        <td> {{ game.date }} </td>
-                        <td> {{ game.start_time }} - {{ game.end_time }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <div class="game-viewer">
+        <div class="sidebar">
+        </div>
+        <div class="game-table">
+            <h2 class="container-fluid heading">Upcoming Games</h2>
+            {% if games %}
+            <table class="table table-hover">
+                <thead>
+                </thead>
+                <tbody>
+                    {% for game in games %}
+                        <tr class="clickable" onclick="window.location='{{ url_for('games.rsvp', game_id=game._id) }}'">
+                            <td>{{ game.date }} | {{ game.start_time }} - {{ game.end_time }} <br>
+                                <h3>{{ game.location }}</h3> <br>
+                                <p> {{ game.notes }}</p>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
 
-        {% else %}
-        <p> Oh no! Looks like there are no upcoming events :( </p>
-        {% endif %}
+            {% else %}
+            <p> Oh no! Looks like there are no upcoming events :( </p>
+            {% endif %}
+        </div>
     </div>
+
 
 {% endblock %}
