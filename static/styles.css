@@ -73,13 +73,13 @@ input[type=text], input[type=number], input[type=password], input[type=date], te
 }
 
 .contain {
-    display: flex;
-    flex-wrap: wrap;
-    grid-template-columns: repeat(auto-fill, 1fr);
-    gap: 20px;
-    justify-content: center;
-    align-content: center;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    height: 100%;
+}
 
+.list {
+    grid-column: span 3;
 }
 
 .event {
@@ -94,22 +94,33 @@ input[type=text], input[type=number], input[type=password], input[type=date], te
     color: #E9E9DF;
 }
 
-.square {
+.list-item {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 40px 40px 120px;
+    grid-column: span 5;
     border-radius: 30px;
     background-color: #123167;
-    padding-top: 100px;
-    padding-bottom: 100px;
     margin: 20px;
-    text-align: center;
     font-size: 20px;
     transition: all 0.5s;
-    width: 370px;
 }
 
-.square:hover {
+.list-item:hover {
     transform: scale(1.1);
     box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+}
 
+.event-location {
+    grid-column: span 3;
+}
+
+.event-title {
+    grid-column: span 2;
+}
+
+.event-title {
+    grid-column: span 3;
 }
 
 .not {
@@ -125,6 +136,7 @@ input[type=text], input[type=number], input[type=password], input[type=date], te
 .heading {
     font-size: 30px;
     margin-bottom: 20px;
+    grid-column: span 3;
 }
 
 .button {
@@ -202,4 +214,16 @@ h4 {
 .login-logout-form {
     height: 100%;
     padding: 50px;
+}
+
+th {
+    color: #808080;
+}
+
+td {
+    padding: 40px !important;
+}
+
+thead {
+    border-bottom-color: #808080 !important;
 }

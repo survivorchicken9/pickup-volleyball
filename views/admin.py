@@ -1,5 +1,7 @@
 from flask import Blueprint, flash, render_template, request, redirect, url_for, session
 from models.game import Game
+from flask import Blueprint, render_template, request, redirect, url_for, session
+from werkzeug.security import check_password_hash, generate_password_hash
 
 admin_blueprint = Blueprint('admin', __name__)  # useful for redirecting
 
@@ -13,6 +15,10 @@ def home():
 
 @admin_blueprint.route("/login", methods=["GET", "POST"])
 def login():
+
+    # Forget any user info
+    session.clear()
+
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
@@ -31,6 +37,14 @@ def register():
         password = request.form.get("password")
         confirmation = request.form.get("confirmation")
         key = request.form.get("key")
+        hashpass = generate_password_hash(password)
+
+        admin = admin(
+            username=username,
+            password=hashpass
+        )
+
+        print(admin)
 
         return redirect(url_for(".login"))
     else:

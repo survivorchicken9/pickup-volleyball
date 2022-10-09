@@ -60,10 +60,6 @@ def success():
             return render_template("games/success.html", player_data=new_player)
 
 
-@games_blueprint.route('/success', methods=["GET", "POST"])
-def success():
-
-
 @games_blueprint.route('/rsvp', methods=["GET", "POST"])
 def rsvp():
     game_id = request.args['game_id']
