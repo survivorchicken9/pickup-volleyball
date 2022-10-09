@@ -3,6 +3,7 @@ from models.game import Game
 
 admin_blueprint = Blueprint('admin', __name__)  # useful for redirecting
 
+
 @admin_blueprint.route("/home", methods=["GET", "POST"])
 def home():
     if request.method == "GET":
@@ -30,15 +31,6 @@ def register():
         password = request.form.get("password")
         confirmation = request.form.get("confirmation")
         key = request.form.get("key")
-
-        if not username:
-            print("You must enter a username")
-        if not password:
-            print("You must enter a password")
-        if not confirmation:
-            print("You must enter a confirmation")
-        if not key:
-            print("You must enter an admin key, contact BACBAC for more info")
 
         return redirect(url_for(".login"))
     else:

@@ -23,6 +23,10 @@ class Game:
     def find_game(cls, game_id):
         return Database.find_one(cls.collection, {"_id": game_id})
 
+    @staticmethod
+    def get_games_sorted_by_date():
+        return sorted(Game.get_all_games(), key=lambda d: d['date'], reverse=True)
+
     def json(self) -> dict:
         return {
             "_id": self._id,
@@ -37,3 +41,4 @@ class Game:
 
     def insert_to_games(self):
         Database.insert_one(self.collection, self.json())
+
