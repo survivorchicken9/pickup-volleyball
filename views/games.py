@@ -27,10 +27,9 @@ def index():
         return render_template("games/home.html", games=games)
 
 
-@games_blueprint.route('/success', methods=["GET", "POST"])
-def success():
-    if request.method == "POST":
-        # game_id = request.form.get("game_id")
+@games_blueprint.route('/rsvp/<string:game_id>', methods=['GET', 'POST'])
+def rsvp(game_id):
+    if request.method == 'POST':
         game_id = request.args.get('game_id')
         name = request.form.get("name")
         position_1 = request.form.get("position_1")
@@ -47,14 +46,13 @@ def success():
             years=int(years),
         )
 
+        new_player.insert_to_players()
+
         print(new_player)
+        print("success")
+        return render_template("games/success.html")
 
-
-@games_blueprint.route('/rsvp', methods=["GET", "POST"])
-def rsvp():
-    game_id = request.args['game_id']
-
-    if request.method == "GET":
+    else:
         game_data = Game.find_game(game_id)
         form = GameRSVPForm()
         return render_template("games/rsvp.html", title="RSVP", form=form, game_data=game_data, game_id=game_id)

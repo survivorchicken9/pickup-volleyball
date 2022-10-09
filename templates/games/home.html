@@ -17,7 +17,7 @@
             <tbody>
                 {% for game in games %}
                     <tr>
-                        <td> Title Goes Here </td>
+                        <td><a href="{{ url_for('games.rsvp', game_id=game._id) }}">link</a></td>
                         <td> {{ game.notes }} </td>
                         <td> {{ game.location }} </td>
                         <td> {{ game.date }} </td>
