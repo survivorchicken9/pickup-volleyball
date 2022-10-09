@@ -60,7 +60,7 @@ def new_event():
         start_time = request.form.get("start")
         end_time = request.form.get("end")
         notes = request.form.get("notes")
-        number_of_teams = request.form.get("number_of_teams")
+        number_of_teams = int(request.form.get("number_of_teams"))
 
         if not date:
             print("No date was entered")
