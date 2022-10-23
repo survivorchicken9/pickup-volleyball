@@ -36,15 +36,8 @@ def login():
         )
         login_user(user)
 
-        next = flask.request.args.get('next')
-        # is_safe_url should check if the url is safe for redirects.
-        # See http://flask.pocoo.org/snippets/62/ for an example.
-        if not is_safe_url(next):
-            return flask.abort(400)
+        return redirect(flask.url_for('.home'))
 
-        return redirect(next or flask.url_for('.home'))
-
-    print('u sucjk')
     return flask.render_template('admin/login.html', form=form)
 
 
