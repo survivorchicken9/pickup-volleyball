@@ -4,10 +4,15 @@
 
 {% block main %}
     <div class="game-viewer">
-        <div class="sidebar">
-        </div>
+        <aside>
+            <div class="sidebar">
+                <h3>Featured Events</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias dicta harum hic libero maxime molestiae quisquam ratione voluptatum! Alias commodi culpa earum libero nobis odit possimus, praesentium quo vel.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, praesentium, voluptatum? Ab aut commodi distinctio dolore dolores eius exercitationem harum in labore magnam modi, quae quam quasi sapiente totam voluptate.</p>
+            </div>
+        </aside>
         <div class="game-table">
-            <h2 class="container-fluid heading">Upcoming Games</h2>
+            <h2 class="container container-fluid mb-3 sticky-header">Upcoming Games</h2>
             {% if games %}
             <table class="table table-hover">
                 <thead>
@@ -23,12 +28,12 @@
                     {% endfor %}
                 </tbody>
             </table>
-
             {% else %}
             <p> Oh no! Looks like there are no upcoming events :( </p>
             {% endif %}
         </div>
     </div>
+
 
 
 {% endblock %}

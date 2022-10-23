@@ -14,6 +14,10 @@ class Admin:
     def get_all_admins(cls):
         return [cls(**elem).json() for elem in Database.find(cls.collection, {})]
 
+    @classmethod
+    def find_admin(cls, username: str):
+        return Database.find_one(cls.collection, {"username": username})
+
     def json(self) -> dict:
         return {
             "_id": self._id,

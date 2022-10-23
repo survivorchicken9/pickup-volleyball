@@ -242,11 +242,24 @@ tr:hover {
 }
 
 .game-viewer {
-    display: grid;
-    grid-template-column: repeat(3, 1fr);
-    grid-template-row: 1fr;
+    display: flex;
+    display: flex;
+    padding: 0 !important;
 }
 
 .game-table {
-    grid-column: span 2 !important;
+    width: 100vw;
+}
+
+.container aside .sidebar {
+    padding-right: 50px;
+    position: sticky;
+    -webkit-position: sticky;
+    top: 30%;
+    width: 20vw;
+    text-align: justify;
+}
+
+.foot {
+    margin-top: auto;
 }

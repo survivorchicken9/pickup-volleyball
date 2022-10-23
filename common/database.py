@@ -2,7 +2,6 @@ import pymongo
 import os
 from dotenv import load_dotenv
 
-
 class Database:
     load_dotenv()
     MONGO_URI = os.getenv("MONGO_URI")

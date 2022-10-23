@@ -1,10 +1,10 @@
 from common.forms import NewEventForm
 from models.game import Game
+from models.admin import Admin
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash
 from werkzeug.security import check_password_hash, generate_password_hash
 
 admin_blueprint = Blueprint('admin', __name__)  # useful for redirecting
-
 
 @admin_blueprint.route("/home", methods=["GET", "POST"])
 def home():
@@ -21,6 +21,12 @@ def login():
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
+
+        check_username = Admin.find_admin(username)
+
+        print(check_username)
+
+        print(check_username)
 
         return redirect(url_for(".home"))
 
