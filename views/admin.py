@@ -1,5 +1,5 @@
 import flask
-from flask_login import login_user
+from flask_login import login_user, logout_user
 
 from common.forms import NewEventForm, LoginForm
 from models.game import Game
@@ -14,6 +14,7 @@ admin_blueprint = Blueprint('admin', __name__)  # useful for redirecting
 def home():
     if request.method == "GET":
         games = Game.get_all_games()
+
         return render_template("admin/home.html", games=games)
 
 
@@ -35,6 +36,7 @@ def login():
             password=request.form.get("password")
         )
         login_user(user)
+        session["logged_in"] = True
 
         return redirect(flask.url_for('.home'))
 
@@ -112,3 +114,10 @@ def view_events():
     if request.method == "GET":
         games = Game.get_all_games()
         return render_template("admin/view-events.html", games=games)
+
+@admin_blueprint.route("/logout", methods=["GET", "POST"])
+def logout():
+    if request.method == "GET":
+        logout_user()
+        session["logged_in"] = False
+        return redirect("/")

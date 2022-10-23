@@ -5,6 +5,7 @@ from models.admin import Admin
 from views.games import games_blueprint
 from views.admin import admin_blueprint
 from flask_login import LoginManager
+from flask_login import current_user
 
 
 app = Flask(__name__)
@@ -24,7 +25,8 @@ def load_user(id):
 @app.route('/', methods=["GET", "POST"])
 def index():
     if request.method == "GET":
-        return render_template('index.html')
+        auth = current_user.is_authenticated
+        return render_template('index.html', auth=auth)
 
 
 app.register_blueprint(games_blueprint, url_prefix='/games')
