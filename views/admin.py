@@ -1,10 +1,14 @@
-from common.forms import NewEventForm
+import flask
+from flask_login import login_user
+
+from common.forms import NewEventForm, LoginForm
 from models.game import Game
 from models.admin import Admin
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash
 from werkzeug.security import check_password_hash, generate_password_hash
 
 admin_blueprint = Blueprint('admin', __name__)  # useful for redirecting
+
 
 @admin_blueprint.route("/home", methods=["GET", "POST"])
 def home():
@@ -13,25 +17,56 @@ def home():
         return render_template("admin/home.html", games=games)
 
 
-@admin_blueprint.route("/login", methods=["GET", "POST"])
+def is_safe_url(next):
+    pass
+
+
+@admin_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
-    # Forget any user info
-    session.clear()
+    # Here we use a class of some kind to represent and validate our
+    # client-side form data. For example, WTForms is a library that will
+    # handle this for us, and we use a custom LoginForm to validate.
+    form = LoginForm()
+    if form.validate_on_submit():
+        # Login and validate the user.
+        # user should be an instance of your `User` class
+        user = Admin(
+            username=request.form.get("username"),
+            password=request.form.get("password")
+        )
+        login_user(user)
 
-    if request.method == "POST":
-        username = request.form.get("username")
-        password = request.form.get("password")
+        next = flask.request.args.get('next')
+        # is_safe_url should check if the url is safe for redirects.
+        # See http://flask.pocoo.org/snippets/62/ for an example.
+        if not is_safe_url(next):
+            return flask.abort(400)
 
-        check_username = Admin.find_admin(username)
+        return redirect(next or flask.url_for('.home'))
 
-        print(check_username)
+    print('u sucjk')
+    return flask.render_template('admin/login.html', form=form)
 
-        print(check_username)
 
-        return redirect(url_for(".home"))
-
-    else:
-        return render_template("admin/login.html")
+# @admin_blueprint.route("/login", methods=["GET", "POST"])
+# def login():
+#     # Forget any user info
+#     session.clear()
+#
+#     if request.method == "POST":
+#         username = request.form.get("username")
+#         password = request.form.get("password")
+#
+#         check_username = Admin.find_admin(username)
+#
+#         print(check_username)
+#
+#         print(check_username)
+#
+#         return redirect(url_for(".home"))
+#
+#     else:
+#         return render_template("admin/login.html")
 
 
 @admin_blueprint.route("/register", methods=["GET", "POST"])

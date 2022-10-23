@@ -7,10 +7,11 @@
         <h2 class="container-fluid heading mb-4">Admin Login</h2>
         <div>
             <form action="/admin/login" method="post">
-                <input name="username" autocomplete="off" autofocus class="form-control mx-auto w-auto p-2" type="text" placeholder="Username"/>
-                <input name="password" class="form-control mx-auto w-auto mt-3 mb-4 p-2" type="password" placeholder="Password" />
+                {{ form.hidden_tag() }}
+                <p>{{ form.username(class_="form-control mx-auto w-auto p-2", placeholder="Username") }}</p>
+                <p>{{ form.password(class_="form-control mx-auto w-auto p-2", placeholder="Password") }}</p>
                 <div class="text-center">
-                    <input class="button small" type="submit" value="Login"/>
+                    <p>{{ form.submit(class="button small", value="Submit") }}</p>
                 </div>
             </form>
         </div>
