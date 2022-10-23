@@ -11,6 +11,7 @@ class Game:
     end_time: str
     location: str
     notes: str
+    admin_id: str
     number_of_teams: int = field(default=2)
     number_of_players: int = field(default=24)
     _id: str = field(default_factory=lambda: uuid.uuid4().hex)
@@ -35,6 +36,7 @@ class Game:
             "end_time": self.end_time,
             "location": self.location,
             "notes": self.notes,
+            "admin_id": self.admin_id,
             "number_of_teams": self.number_of_teams,
             "number_of_players": self.number_of_players
         }
