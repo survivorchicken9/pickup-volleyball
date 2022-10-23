@@ -10,6 +10,7 @@ jinja2 = "*"
 pymongo = {extras = ["srv"], version = "*"}
 python-dotenv = "*"
 flask-wtf = "*"
+flask-login = "*"
 
 [dev-packages]
 
