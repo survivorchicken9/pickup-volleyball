@@ -22,7 +22,7 @@ class Admin:
     def is_anonymouse(self):
         return False
 
-    def get_id(self) -> str:
+    def get_id(self):
         return str(Database.find_one(self.collection, {"username": self.username})["_id"])
 
     @classmethod
